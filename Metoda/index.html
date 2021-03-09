@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Доклад №1</title>
+  </head>
+  <body>
+    <header>
+      <div class="popup">
+        <h1 class="popup_title">
+          Методические указания по структуре приложения "Файловый менеджер"
+        </h1>
+      </div>
+    </header>
+    <section>
+      <h3 class="title">
+        1.(src\main\AndroidManifest.xml)
+      </h3>
+      <p class="img">
+        <img src="./image/Screenshot_1.png" alt="img">
+      </p>
+      <p class="content">
+        Задает системное разрешение, которое пользователь должен предоставить для правильной работы приложения. Разрешения предоставляются пользователем при установке приложения (на устройствах под управлением Android 5.1 и ниже) или во время работы приложения (на устройствах под управлением Android 6.0 и выше). Назначение файла:
+      </p>
+        <ol class="list">
+          <li>
+            Объявляет имя Java-пакета приложения, который служит уникальным идентификатором;
+          </li>
+          <li>
+            описывает компоненты приложения — деятельности, службы, приемники широковещательных намерений и контент-провайдеры, что позволяет вызывать 3. классы, которые реализуют каждый из компонентов, и объявляет их намерения;
+          </li>
+          <li>
+            содержит список необходимых разрешений для обращения к защищенным частям API и взаимодействия с другими приложениями;
+          </li>
+          <li>объявляет разрешения, которые сторонние приложения обязаны иметь для взаимодействия с компонентами данного приложения;</li>
+          <li>объявляет минимальный уровень API Android, необходимый для работы приложения;
+          </li>
+          <li>перечисляет связанные библиотеки.
+          </li>
+        </ol>
+        <p class="content">
+          Атрибуты AndroidManifest:
+        </p>
+        <ol class="list">
+          <li> xmlns:android - определяет пространство имен Android. Оно всегда одно и то же</li>
+          <li>package - определяет уникальное имя пакета приложения, которое вы задали при создании проекта. Android Marketplace проверяет уникальность при приеме приложения, поэтому рекомендуется использовать свое имя для избежания конфликтов с другими разработчиками. Например, я использую имя своего сайта в обратном порядке: ru.alexanderklimov.appname</li>
+          <li>android:versionCode - указывает на внутренний номер версии, используемый для сравнения версий программы. «versionCode» должен быть целым, и Android Market использует это для определения, предоставили ли вы новую версию, передавая триггеру обновления на устройствах, на которых установлено ваше приложение. Как правило. начинается с 1 и увеличивается на единицу, если вы выпускаете новую версию приложения.</li>
+          <li>android:versionName - указывает номер пользовательской версии. Можно использовать строку или строковый ресурс. Этот номер видит пользователь.</li>
+        </ol>
+      </div>
+    </section>
+    <section>
+      <h3 class="title">
+        2. (src\main\AndroidManifest.xml)
+      </h3>
+      <p class="img">
+        <img src="./image/Screenshot_2.png" alt="img">
+      </p>
+      <p class="content">
+        С помощью действия "android.intent.action.MAIN"  в "intent-filter" мы запускаем файл ".ui.activities.MainActivity", который отвечает за основной функционал приложения.Каждый тег "activity" поддерживает вложенные узлы "intent-filter". Элемент "intent-filter" определяет типы намерений, на которые могут ответить деятельность, сервис или приемник намерений. Фильтр намерений объявляет возможности его родительского компонента — что могут сделать деятельность или служба и какие типы рассылок получатель может обработать. Фильтр намерений предоставляет для компонентов-клиентов возможность получения намерений объявляемого типа, отфильтровывая те, которые не значимы для компонента, и содержит дочерние элементы "action", "category", "data".
+      </p>
+    </section>
+    <section>
+      <h3 class="title">
+        3. (src\main\java\com\amaze\filemanager\ui\activities\MainActivity.java)
+      </h3>
+      <p class="img">
+        <img src="./image/Screenshot_3.png" alt="img">
+      </p>
+      <p class="content">
+        в методе onCreate мы инициализируем основные функции для работы пользователя с приложением. В данном блоке кода автоматически запускаются следующие функции:
+      </p>
+      <ol class="list">
+        <li> Восстанвление последнего сеанса работы приложения.</li>
+        <li>	 Данная функция запускает второй поток для приложения, который проверяет есть ли доступ к правам супер пользователя и тем самым разрешает или не разрешает доступ к системным файлам телефона.
+        </li>
+        <li> Инициализация функционала кнопки "FAB"(добавить папку или файл, отменить копирование и тд.).
+        </li>
+        <li> Инициализация ui меню.
+        </li>
+        <li>	Инициализация доп. функций(кнопка три точки).
+        </li>
+      </ol>
+      <p class="content">
+        После инициализации всех этих функций пользователь может взаимодействовать с приложением.
+      </p>
+    </section>
+    <section>
+      <h3 class="title">
+        4. (src\main\java\com\amaze\filemanager\ui\fragments\MainFragment.java)      </h3>
+        <p class="img">
+          <img src="./image/Screenshot_4.png" alt="img">
+        </p>
+      <p class="content">
+        Класс Fragment используется для построения динамического интерфейса андроид приложений и взаимодействуют с Activity. Главным преимуществом фрагментов является упрощение работы с UI (пользовательским интерфейсом) на экранах разных размеров. Одна Activity может взаимодействовать с неограниченным количеством фрагментов. В данном файле вызываются функции пользователем в зависимости от его действий. Определены функции для работы с папками и файлами такие как: переименовывание, копирование, вырезание, поиск, сортировка, удаление и тд.
+      </p>
+    </section>
+    <section>
+      <h3 class="title">
+        5. (src\main\java\com\amaze\filemanager\ui\fragments\SearchWorkerFragment.java)
+      </h3>
+      <p class="img">
+        <img src="./image/Screenshot_5.png" alt="img">
+      </p>
+      <p class="content">
+        Данный метод по запросу пользователя осуществляет асинхронный поиск файлов или папок на устройстве. При удачном поиске данный метод возвращает путь к файлу или папке которую удалось найти и открывает данный путь, при неудачном поиске будет возвращено сообщение о отсутствии таковых.
+      </p>
+      <p class="img img2">
+        <img src="./image/2.jpg" alt="img">
+      </p>
+    </section>
+    <section>
+      <h3 class="title">
+        6. (src\main\java\com\amaze\filemanager\ui\fragments\MainFragment.java)
+      </h3>
+      <p class="img">
+        <img src="./image/Screenshot_6.png" alt="img">
+      </p>
+      <p class="content">
+        Эта функция отвечает за переименовывание файлов или папок. В случае некоректного ввода символа функция-валидатор не позволит завершить действие.
+      </p>
+      <p class="img img2">
+        <img src="./image/rename.jpg" alt="img">
+        <img src="./image/rename2.jpg" alt="img">
+      </p>
+    </section>
+    <section>
+      <h3 class="title">
+        7.  (src\main\java\com\amaze\filemanager\ui\fragments\MainFragment.java)
+      </h3>
+      <p class="img">
+        <img src="./image/Screenshot_7.png" alt="img">
+      </p>
+      <p class="content">
+        Метод onListItemClicked отслеживает нажатие пользователя на элемент списка, находит путь к папке\файлу и производит переход к выбранному пути.
+      </p>
+      <p class="img img2">
+        <img src="./image/rename2.jpg" alt="img">
+      </p>
+    </section>
+    <section>
+      <h3 class="title">
+        8. (src\main\java\com\amaze\filemanager\ui\fragments\MainFragment.java)
+      </h3>
+      <p class="img">
+        <img src="./image/Screenshot_8.png" alt="img">
+      </p>
+      <p class="content">
+        Получает настройки отображения значков и скрытых файлов, после по пути получает список или сетку элементов и выводит их в выбранном виде
+      </p>
+      <p class="img img2">
+        <img src="./image/1.jpg" alt="img">
+      </p>
+    </section>
+    <section>
+      <h3 class="title">
+        9. (src\main\java\com\amaze\filemanager\asynchronous\asynctasks\PrepareCopyTask.java)
+      </h3>
+      <p class="img">
+        <img src="./image/Screenshot_9.png" alt="img">
+      </p>
+      <p class="content">
+        Данный фрагмент кода позволяет нам производить копирование пути к файлам или папкам, а затем при помощи этого пути производить копирование файлов\папок.
+      </p>
+      <p class="img img2">
+        <img src="./image/copy.jpg" alt="img">
+        <img src="./image/copy2.jpg" alt="img">
+      </p>
+    </section>
+    <section>
+      <h3 class="title">
+        10. (src\main\java\com\amaze\filemanager\asynchronous\asynctasks\DeleteTask.java)
+      </h3>
+      <p class="img">
+        <img src="./image/Screenshot_10.png" alt="img">
+      </p>
+      <p class="content">
+        Данный метод позволяет производить удаление файлов\папок в зависимости от того является ли носитель встроенным или внешним(OTG).
+      </p>
+      <p class="img img2">
+        <img src="./image/delete.jpg" alt="img">
+        <img src="./image/delete2.jpg" alt="img">
+      </p>
+    </section>
+  </body>
+</html>
